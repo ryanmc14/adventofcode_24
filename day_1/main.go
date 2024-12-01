@@ -11,8 +11,8 @@ import (
 )
 
 func main() {
-    var list1 []int
-    var list2 []int
+    var listLeft []int
+    var listRight []int
     var part1Answer  int
     var part2Answer  int
 
@@ -20,28 +20,28 @@ func main() {
 	re := regexp.MustCompile("   ")
 	for sc.Scan() {
 		results := re.Split(sc.Text(), -1)
-		int1, err := strconv.Atoi(results[0])
-		int2, err := strconv.Atoi(results[1])
+		intLeft, err := strconv.Atoi(results[0])
+		intRight, err := strconv.Atoi(results[1])
 		if err != nil {
 			log.Fatal(err.Error())
 		}
 
-		list1 = append(list1, int1)
-		list2 = append(list2, int2)
+		listLeft = append(listLeft, intLeft)
+		listRight = append(listRight, intRight)
 	}
 
-    sort.Ints(list1)
-    sort.Ints(list2)
+    sort.Ints(listLeft)
+    sort.Ints(listRight)
 
     //part 1
-    for i, _ := range list1 {
-        part1Answer += diff(list1[i], list2[i])
+    for i, _ := range listLeft {
+        part1Answer += diff(listLeft[i], listRight[i])
     }
     fmt.Println(part1Answer)
 
     //part2
-    for _, v := range list1{
-        frequency := uniqueValue(v, list2)
+    for _, v := range listLeft{
+        frequency := uniqueValue(v, listRight)
         part2Answer += (v*frequency)
     }
 
