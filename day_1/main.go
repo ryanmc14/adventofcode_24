@@ -11,9 +11,12 @@ import (
 )
 
 func main() {
+    var list1 []int
+    var list2 []int
+    var part1Answer  int
+    var part2Answer  int
+
 	sc := advent_utils.Input("input.txt")
-	var list1 []int
-	var list2 []int
 	re := regexp.MustCompile("   ")
 	for sc.Scan() {
 		results := re.Split(sc.Text(), -1)
@@ -29,26 +32,22 @@ func main() {
 
     sort.Ints(list1)
     sort.Ints(list2)
-    var sum  int
-    var sum2  int
+
     //part 1
     for i, _ := range list1 {
-        sum += diff(list1[i], list2[i])
+        part1Answer += diff(list1[i], list2[i])
     }
-    fmt.Println(sum)
+    fmt.Println(part1Answer)
 
     //part2
     for _, v := range list1{
         frequency := uniqueValue(v, list2)
-        sum2 += (v*frequency)
+        part2Answer += (v*frequency)
     }
 
-    fmt.Println(sum2)
+    fmt.Println(part2Answer)
 }
 
-//two lists
-// sort lists
-// loop through and subtract
 
 func diff(a, b int) int {
    if a < b {
